@@ -77,3 +77,112 @@ let index = techs.indexOf("css")
 techs.splice(index, 1)
 
 console.log(techs)
+
+
+//filter
+const arr = [1, 2, 3, 4, 5]
+const highNumbers = arr.filter((n) => {
+    if(n >= 3){
+        return n
+    }
+})
+
+console.log(highNumbers)
+
+const users = [
+    {nome: "João", available: true},
+    {nome: "Gigi", available: false},
+    {nome: "Armando", available: false},
+    {nome: "Berg", available: false}
+]
+
+const availables = users.filter((i) => {
+    if(i.available == true){
+        return i
+    }
+})
+const notAvailables = users.filter((i) => !i.available)
+
+console.log(availables)
+console.log(notAvailables)
+
+//map
+const products = [
+    {nome: "Camisa", price: 10.99, category: "Roupas"},
+    {nome: "Chaleira elétrica", price: 149.90, category: "Eletro"},
+    {nome: "Fogão", price: 1299.90, category: "Eletro"},
+    {nome: "Calça Jeans", price: 99.90, category: "Roupas"}
+]
+products.map((product => {
+    if(product.category == "Roupas"){
+        product.onSale = true
+    }
+}))
+console.log(products)
+
+//destructuring
+const fruits = ["Maçã", "Laranja", "Mamão"]
+const [f1, f2, f3] = fruits
+
+console.log(f1)
+console.log(f2)
+console.log(f3)
+
+const products_datails = {
+    name: "Mouse",
+    price: 39.99,
+    category: "Periféricos",
+    color: "Cinza"
+}
+
+const {name: productName, price, category: productCategory, color} = products_datails
+console.log(`O nome do produto é ${productName}, custa R$${price} e pertence a categoria ${productCategory}`)
+
+//7 spread operator
+const a1 = [1, 2, 3]
+const a2 = [4, 5, 6]
+
+const a3 = [...a1, ...a2]
+console.log(a3)
+const a4 = [0, ...a1, 4]
+console.log(a4)
+
+const carName = {name: "Gol"}
+const carBrand = {brand: "VW"}
+const otherInfos = {km: 10000, price: 49000}
+
+const car = {...carName, ...carBrand, ...otherInfos}
+console.log(car)
+
+//classes
+
+class Product {
+    constructor(name, price) {
+        this.name = name
+        this.price = price
+    }
+    setDiscount(discount) {
+        return this.price * ((100 - discount) / 100)
+    }
+}
+
+const shirt = new Product("Camisa gola v", 20)
+console.log(shirt.name)
+console.log(shirt.setDiscount(20))
+
+//herança
+class ProductWithAttributes extends Product {
+    constructor(name, price, colors){
+        super(name, price)
+        this.colors = colors
+    }
+    showColors() {
+        console.log("As cores são:")
+        this.colors.forEach((color) => {
+            console.log(color)
+        })
+    }
+}
+const hat = new ProductWithAttributes("Chapéu", 39.90, ["Preto", "Azul", "Verde"])
+console.log(hat.setDiscount(30))
+hat.showColors()
